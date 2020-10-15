@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 double cmToFeet(double height) {
@@ -67,7 +66,7 @@ class _HeightSelectionState extends State<HeightSelection> {
                   height = value.truncateToDouble();
                 });
               },
-              divisions: 300,
+              divisions: 272,
               label: height.toString(),
               activeColor: Colors.red[400],
               inactiveColor: Colors.grey,

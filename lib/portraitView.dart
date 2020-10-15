@@ -4,9 +4,12 @@ import 'weight.dart';
 import 'age.dart';
 
 Widget portraitView(String units) {
-  return Column(children: [
-    AgeSelection(),
-    HeightSelection(units: units),
-    WeightSelection(units: units)
-  ]);
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+    child: Column(children: [
+      AgeSelection(),
+      HeightSelection(units: units),
+      WeightSelection(units: units)
+    ]),
+  );
 }
