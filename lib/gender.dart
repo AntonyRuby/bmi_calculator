@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class GenderSelection extends StatefulWidget {
+  final callback;
+
+  GenderSelection({Key key, @required this.callback}) : super(key: key);
+
   @override
   GenderSelectionState createState() => GenderSelectionState();
 }
@@ -8,18 +12,20 @@ class GenderSelection extends StatefulWidget {
 class GenderSelectionState extends State<GenderSelection> {
   String gender = 'Male';
   int id = 1;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Radio(
+        Radio( 
           value: 1,
           groupValue: id,
           onChanged: (val) {
             setState(() {
               gender = 'Male';
               id = 1;
+              widget.callback({"gender": gender});
             });
           },
         ),
@@ -35,6 +41,7 @@ class GenderSelectionState extends State<GenderSelection> {
             setState(() {
               gender = 'Female';
               id = 2;
+              widget.callback({"gender": gender});
             });
           },
         ),

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 double kgToLbs(double weight) {
-  return (weight * 0.453592).roundToDouble();
+  return (weight / 0.453592).roundToDouble();
 }
 
 double lbToKgs(double weight) {
@@ -11,15 +11,17 @@ double lbToKgs(double weight) {
 
 class WeightSelection extends StatefulWidget {
   final String units;
+  final callback;
 
-  WeightSelection({Key key, @required this.units}) : super(key: key);
+  WeightSelection({Key key, @required this.units, @required this.callback})
+      : super(key: key);
 
   @override
   _WeightSelectionState createState() => _WeightSelectionState();
 }
 
 class _WeightSelectionState extends State<WeightSelection> {
-  double weight = 50;
+  double weight = 12;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +46,12 @@ class _WeightSelectionState extends State<WeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
               value: weight,
-              min: 50,
+              min: 12,
               max: 150,
               onChanged: (value) {
                 setState(() {
                   weight = value.truncateToDouble();
+                  widget.callback({"weight": weight});
                 });
               },
               divisions: 150,
@@ -62,11 +65,12 @@ class _WeightSelectionState extends State<WeightSelection> {
             child: Column(children: [
               Slider(
                 value: kgToLbs(weight),
-                min: 110,
+                min: 26,
                 max: 331,
                 onChanged: (val) {
                   setState(() {
                     weight = lbToKgs(val);
+                    widget.callback({"weight": weight});
                   });
                 },
                 divisions: 331,

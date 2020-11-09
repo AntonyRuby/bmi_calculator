@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:bmi_calculator/portraitView.dart';
 import 'package:flutter/material.dart';
+// import 'package:bmi_calculator/landscapeview.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -40,26 +41,36 @@ class _HomepageState extends State<Homepage> {
   String result = "Select Data";
   bool metric = true;
 
+  // Future<Map<String, String>> loadAssets() async {
+  //   final bmi =
+  //       await DefaultAssetBundle.of(context).loadString('asset/bmi_chart.json');
+
+  //   return {'bmi': bmi};
+  // }
+
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
-    Widget body = portraitView(metric ? "metric" : "imperial");
+    Widget body = PortraitView(units: metric ? "metric" : "imperial");
     if (orientation == Orientation.landscape) {
       body = Text("");
-      //landscapeView();
+      // landscapeView();
     }
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           "BMI Calculator",
           style: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.left,
         ),
         actions: [
           Row(
             children: [
-              Text(metric ? "metric" : "imperial"),
+              Text(
+                metric ? "metric" : "imperial",
+                style: TextStyle(fontSize: 16),
+              ),
               Switch(
                 value: metric,
                 onChanged: (value) {

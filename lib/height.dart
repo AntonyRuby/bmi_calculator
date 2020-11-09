@@ -21,8 +21,10 @@ double kgToLbs(double weight) {
 
 class HeightSelection extends StatefulWidget {
   final String units;
+  final callback;
 
-  HeightSelection({Key key, @required this.units}) : super(key: key);
+  HeightSelection({Key key, @required this.units, @required this.callback})
+      : super(key: key);
 
   @override
   _HeightSelectionState createState() => _HeightSelectionState();
@@ -59,14 +61,17 @@ class _HeightSelectionState extends State<HeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
               value: height,
-              min: 50,
-              max: 272,
+              min: 31,
+              max: 241,
               onChanged: (value) {
                 setState(() {
                   height = value.truncateToDouble();
+                  heightFeet = cmToFeet(height);
+                  heightInch = cmToInch(height);
+                  widget.callback({"height": height});
                 });
               },
-              divisions: 272,
+              divisions: 241,
               label: height.toString(),
               activeColor: Colors.red[400],
               inactiveColor: Colors.grey,
@@ -78,27 +83,31 @@ class _HeightSelectionState extends State<HeightSelection> {
               Slider(
                 value: heightFeet,
                 min: 1,
-                max: 9,
+                max: 7,
                 onChanged: (val) {
                   setState(() {
                     height = feetToCm(val, heightInch);
+                    heightFeet = val;
+                    widget.callback({"height": height});
                   });
                 },
-                divisions: 9,
+                divisions: 7,
                 label: heightFeet.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,
               ),
               Slider(
                 value: heightInch,
-                min: 6,
-                max: 12,
+                min: 0,
+                max: 11,
                 onChanged: (val) {
                   setState(() {
                     height = feetToCm(heightFeet, val);
+                    heightInch = val;
+                    widget.callback({"height": height});
                   });
                 },
-                divisions: 12,
+                divisions: 11,
                 label: heightInch.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,
