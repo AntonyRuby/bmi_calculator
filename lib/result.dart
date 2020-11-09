@@ -59,7 +59,7 @@ class _ResultState extends State<Result> {
           height: 30,
         ),
         Text(
-          "<18 Underweight  18.5-25 Healthy \n 25-30 Overweight >30 Obesity",
+          "<18 Underweight  18.5-25 Healthy \n\n 25-30 Overweight >30 Obesity",
           style: Theme.of(context).textTheme.bodyText1,
           textAlign: TextAlign.center,
         ),
