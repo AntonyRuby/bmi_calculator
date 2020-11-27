@@ -11,7 +11,7 @@ class AgeSelection extends StatefulWidget {
 }
 
 class _AgeSelectionState extends State<AgeSelection> {
-  double age = 25;
+  int age = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,12 @@ class _AgeSelectionState extends State<AgeSelection> {
       Padding(
           padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
           child: Slider(
-            value: age,
+            value: age.roundToDouble(),
             min: 2,
             max: 70,
             onChanged: (value) {
               setState(() {
-                age = value.truncateToDouble();
+                age = value.round();
                 widget.callback({"age": age});
               });
             },

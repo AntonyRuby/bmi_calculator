@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:bmi_calculator/gender.dart';
 import 'package:bmi_calculator/result.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,10 @@ import 'age.dart';
 
 class PortraitView extends StatefulWidget {
   final units;
-  PortraitView({Key key, @required this.units}) : super(key: key);
+  final snapshot;
+
+  PortraitView({Key key, @required this.units, @required this.snapshot})
+      : super(key: key);
 
   @override
   _PortraitViewState createState() => _PortraitViewState();
@@ -15,17 +19,16 @@ class PortraitView extends StatefulWidget {
 
 class _PortraitViewState extends State<PortraitView> {
   double bmi = 0;
-  double height = 168;
-  double weight = 50;
-  double age = 25;
-  var gender = "";
+  int height = 168;
+  int weight = 50;
+  int age = 25;
+  int gender = 1;
+  String condition = "Normal";
 
-  // var data = json.decode(snapshot.data["bmi"].toString());
-
-  void redraw(Map<String, double> change) {
+  void redraw(Map<String, int> change) {
     setState(() {
       if (change.containsKey("gender")) {
-        gender = change["gender"] as String;
+        gender = change["gender"];
       } else if (change.containsKey("age")) {
         age = change["age"];
       } else if (change.containsKey("height")) {
@@ -33,21 +36,6 @@ class _PortraitViewState extends State<PortraitView> {
       } else if (change.containsKey("weight")) {
         weight = change["weight"];
       }
-
-      // if (age <=19) {
-      //   // var data = json.decode(snapshot.data["bmi"].toString());
-      // } else if (
-
-      bmi = weight / ((height / 100) * (height / 100));
-      // if (bmi >= 18.5 && bmi <= 25) {
-      //   condition = "Normal";
-      // } else if (bmi > 25 && bmi <= 30) {
-      //   condition = "Overweight";
-      // } else if (bmi > 30) {
-      //   condition = "Obesity";
-      // } else {
-      //   condition = "Underweight";
-      // }
     });
   }
 
@@ -55,32 +43,34 @@ class _PortraitViewState extends State<PortraitView> {
   Widget build(BuildContext context) {
     redraw({});
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
       child: Column(children: [
-        Result(bmi: bmi.round()),
+        Result(
+            height: height,
+            weight: weight,
+            age: age,
+            gender: gender == 1 ? "male" : "female",
+            bmiJson: json.decode(widget.snapshot.data["bmiJson"].toString())),
         SizedBox(
-          height: 45,
+          height: 15,
         ),
         GenderSelection(
           callback: redraw,
         ),
         SizedBox(
-          height: 25,
+          height: 8,
         ),
         AgeSelection(
           callback: redraw,
         ),
         SizedBox(
-          height: 25,
+          height: 8,
         ),
         HeightSelection(units: widget.units, callback: redraw),
         SizedBox(
-          height: 25,
+          height: 8,
         ),
         WeightSelection(units: widget.units, callback: redraw),
-        SizedBox(
-          height: 25,
-        ),
       ]),
     );
   }

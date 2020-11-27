@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-double kgToLbs(double weight) {
-  return (weight / 0.453592).roundToDouble();
+int kgToLbs(int weight) {
+  return (weight / 0.453592).round();
 }
 
-double lbToKgs(double weight) {
-  return (weight / 0.453592).roundToDouble();
+int lbToKgs(int weight) {
+  return (weight * 0.453592).round();
 }
 
 class WeightSelection extends StatefulWidget {
@@ -21,7 +21,7 @@ class WeightSelection extends StatefulWidget {
 }
 
 class _WeightSelectionState extends State<WeightSelection> {
-  double weight = 12;
+  int weight = 12;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +45,12 @@ class _WeightSelectionState extends State<WeightSelection> {
         Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
-              value: weight,
-              min: 12,
+              value: weight.roundToDouble(),
+              min: 6,
               max: 150,
               onChanged: (value) {
                 setState(() {
-                  weight = value.truncateToDouble();
+                  weight = value.round();
                   widget.callback({"weight": weight});
                 });
               },
@@ -64,12 +64,12 @@ class _WeightSelectionState extends State<WeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Column(children: [
               Slider(
-                value: kgToLbs(weight),
-                min: 26,
+                value: kgToLbs(weight).roundToDouble(),
+                min: 13,
                 max: 331,
                 onChanged: (val) {
                   setState(() {
-                    weight = lbToKgs(val);
+                    weight = lbToKgs(val.round());
                     widget.callback({"weight": weight});
                   });
                 },

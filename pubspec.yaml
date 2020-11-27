@@ -30,15 +30,27 @@ dependencies:
   cupertino_icons: ^0.1.3
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.8.0
+  flutter_launcher_name: ^0.0.1 
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  image_path: "assets/launch icon.png"
+  android: true
+  ios: false
+
+flutter_launcher_name:
+  name: "BMI Calculator"    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - assets/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

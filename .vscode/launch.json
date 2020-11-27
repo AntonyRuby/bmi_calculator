@@ -8,6 +8,7 @@
             "name": "bmi_calculator",
             "request": "launch",
             "type": "dart",
+            // "flutterMode": "release"
             "flutterMode": "debug"
         }
     ]

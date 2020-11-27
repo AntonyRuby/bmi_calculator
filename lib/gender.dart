@@ -10,22 +10,20 @@ class GenderSelection extends StatefulWidget {
 }
 
 class GenderSelectionState extends State<GenderSelection> {
-  String gender = 'Male';
-  int id = 1;
+  int genderId = 1;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Radio( 
+        Radio(
           value: 1,
-          groupValue: id,
+          groupValue: genderId,
           onChanged: (val) {
             setState(() {
-              gender = 'Male';
-              id = 1;
-              widget.callback({"gender": gender});
+              genderId = 1;
+              widget.callback({"gender": genderId});
             });
           },
         ),
@@ -35,13 +33,12 @@ class GenderSelectionState extends State<GenderSelection> {
         ),
         Radio(
           value: 2,
-          groupValue: id,
+          groupValue: genderId,
           activeColor: Colors.pink,
           onChanged: (val) {
             setState(() {
-              gender = 'Female';
-              id = 2;
-              widget.callback({"gender": gender});
+              genderId = 2;
+              widget.callback({"gender": genderId});
             });
           },
         ),

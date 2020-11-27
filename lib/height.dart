@@ -1,22 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-double cmToFeet(double height) {
-  return (height / 2.54 / 12).floorToDouble();
+int cmToFeet(int height) {
+  return (height / 2.54 / 12).floor();
 }
 
-double cmToInch(double height) {
-  return ((height / 2.54) - (height / 2.54 / 12).floorToDouble() * 12)
-      .roundToDouble();
+int cmToInch(int height) {
+  return ((height / 2.54) - (height / 2.54 / 12).floor() * 12).round();
 }
 
-double feetToCm(double feet, inch) {
-  return ((feet.truncateToDouble() * 12 + inch.truncateToDouble()) * 2.54)
-      .roundToDouble();
-}
-
-double kgToLbs(double weight) {
-  return (weight * 0.453592).roundToDouble();
+int feetToCm(int feet, inch) {
+  return ((feet * 12 + inch) * 2.54).round();
 }
 
 class HeightSelection extends StatefulWidget {
@@ -31,9 +25,9 @@ class HeightSelection extends StatefulWidget {
 }
 
 class _HeightSelectionState extends State<HeightSelection> {
-  double height = 168;
-  double heightFeet = 5;
-  double heightInch = 6;
+  int height = 168;
+  int heightFeet = 5;
+  int heightInch = 6;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +41,10 @@ class _HeightSelectionState extends State<HeightSelection> {
           ),
           Text(
             (widget.units == "metric")
-                ? height.round().toString() + " cms"
-                : cmToFeet(height).round().toString() +
+                ? height.toString() + " cms"
+                : cmToFeet(height).toString() +
                     "' " +
-                    cmToInch(height).round().toString() +
+                    cmToInch(height).toString() +
                     "\"",
             style: Theme.of(context).textTheme.bodyText1,
           ),
@@ -60,12 +54,12 @@ class _HeightSelectionState extends State<HeightSelection> {
         Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
-              value: height,
-              min: 31,
+              value: height.roundToDouble(),
+              min: 60,
               max: 241,
               onChanged: (value) {
                 setState(() {
-                  height = value.truncateToDouble();
+                  height = value.round();
                   heightFeet = cmToFeet(height);
                   heightInch = cmToInch(height);
                   widget.callback({"height": height});
@@ -81,13 +75,13 @@ class _HeightSelectionState extends State<HeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Column(children: [
               Slider(
-                value: heightFeet,
-                min: 1,
+                value: heightFeet.roundToDouble(),
+                min: 2,
                 max: 7,
                 onChanged: (val) {
                   setState(() {
-                    height = feetToCm(val, heightInch);
-                    heightFeet = val;
+                    height = feetToCm(val.round(), heightInch);
+                    heightFeet = val.round();
                     widget.callback({"height": height});
                   });
                 },
@@ -97,17 +91,17 @@ class _HeightSelectionState extends State<HeightSelection> {
                 inactiveColor: Colors.grey,
               ),
               Slider(
-                value: heightInch,
+                value: heightInch.roundToDouble(),
                 min: 0,
                 max: 11,
                 onChanged: (val) {
                   setState(() {
-                    height = feetToCm(heightFeet, val);
-                    heightInch = val;
+                    height = feetToCm(heightFeet, val.round());
+                    heightInch = val.round();
                     widget.callback({"height": height});
                   });
                 },
-                divisions: 11,
+                divisions: 12,
                 label: heightInch.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,
