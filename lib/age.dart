@@ -15,7 +15,6 @@ class _AgeSelectionState extends State<AgeSelection> {
 
   @override
   Widget build(BuildContext context) {
-    // var data = json.decode(snapshot.data["bmi_chart"].toString());
     return Column(children: <Widget>[
       Row(
         mainAxisAlignment: MainAxisAlignment.center,

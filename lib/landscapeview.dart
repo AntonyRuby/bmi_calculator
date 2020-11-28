@@ -57,7 +57,7 @@ class _LandscapeViewState extends State<LandscapeView> {
                       bmiJson: json
                           .decode(widget.snapshot.data["bmiJson"].toString())),
                   SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   GenderSelection(
                     callback: redraw,

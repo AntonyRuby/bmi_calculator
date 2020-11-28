@@ -52,23 +52,23 @@ class _PortraitViewState extends State<PortraitView> {
             gender: gender == 1 ? "male" : "female",
             bmiJson: json.decode(widget.snapshot.data["bmiJson"].toString())),
         SizedBox(
-          height: 15,
+          height: 20,
         ),
         GenderSelection(
           callback: redraw,
         ),
         SizedBox(
-          height: 8,
+          height: 20,
         ),
         AgeSelection(
           callback: redraw,
         ),
         SizedBox(
-          height: 8,
+          height: 20,
         ),
         HeightSelection(units: widget.units, callback: redraw),
         SizedBox(
-          height: 8,
+          height: 20,
         ),
         WeightSelection(units: widget.units, callback: redraw),
       ]),
