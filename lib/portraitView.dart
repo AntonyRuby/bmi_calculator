@@ -43,7 +43,7 @@ class _PortraitViewState extends State<PortraitView> {
   Widget build(BuildContext context) {
     redraw({});
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: Column(children: [
         Result(
             height: height,
@@ -51,15 +51,11 @@ class _PortraitViewState extends State<PortraitView> {
             age: age,
             gender: gender == 1 ? "male" : "female",
             bmiJson: json.decode(widget.snapshot.data["bmiJson"].toString())),
-        SizedBox(
-          height: 20,
-        ),
+        Spacer(),
         GenderSelection(
           callback: redraw,
         ),
-        SizedBox(
-          height: 20,
-        ),
+        SizedBox(height: 20),
         AgeSelection(
           callback: redraw,
         ),

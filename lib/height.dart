@@ -55,7 +55,7 @@ class _HeightSelectionState extends State<HeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
               value: height.roundToDouble(),
-              min: 60,
+              min: 61,
               max: 241,
               onChanged: (value) {
                 setState(() {

@@ -69,14 +69,14 @@ class _ResultState extends State<Result> {
           ],
         ),
         SizedBox(
-          height: 5,
+          height: 15,
         ),
         Text(
           condition,
           style: Theme.of(context).textTheme.headline3,
         ),
         SizedBox(
-          height: 15,
+          height: 20,
         ),
         Text(
           (widget.age > 19)

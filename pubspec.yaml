@@ -37,12 +37,12 @@ dev_dependencies:
 
 
 flutter_icons:
-  image_path: "assets/launch icon.png"
+  image_path: "assets/BMI.PNG"
   android: true
   ios: false
 
 flutter_launcher_name:
-  name: "BMI Calculator"    
+  name: "BMI Calculator"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
