@@ -101,7 +101,7 @@ class _HeightSelectionState extends State<HeightSelection> {
                     widget.callback({"height": height});
                   });
                 },
-                divisions: 12,
+                divisions: 11,
                 label: heightInch.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,

@@ -26,6 +26,32 @@ class _ResultState extends State<Result> {
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(bmiRange, bmi) {
+      if (widget.age <= 19) {
+        if ((bmi > bmiRange[2]) && (bmi < bmiRange[4])) {
+          return Colors.green;
+        } else if ((bmi > bmiRange[1]) && (bmi <= bmiRange[2])) {
+          return Colors.blue;
+        } else if ((bmi <= bmiRange[1])) {
+          return Colors.purple;
+        } else if ((bmi >= bmiRange[4]) && (bmi < bmiRange[5])) {
+          return Colors.orange;
+        } else {
+          return Colors.red;
+        }
+      } else {
+        if (bmi >= 18.5 && bmi <= 25) {
+          return Colors.green;
+        } else if (bmi > 25 && bmi <= 30) {
+          return Colors.orange;
+        } else if (bmi > 30) {
+          return Colors.red;
+        } else {
+          return Colors.blue;
+        }
+      }
+    }
+
     bmi = widget.weight / ((widget.height / 100) * (widget.height / 100));
     List<dynamic> bmiRange =
         widget.bmiJson[widget.gender][(widget.age.round() * 12).toString()];
@@ -53,6 +79,7 @@ class _ResultState extends State<Result> {
         condition = "Underweight";
       }
     }
+
     return Column(
       children: [
         Row(
@@ -73,7 +100,11 @@ class _ResultState extends State<Result> {
         ),
         Text(
           condition,
-          style: Theme.of(context).textTheme.headline3,
+          style: TextStyle(
+            color: getColor(bmiRange, bmi),
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         SizedBox(
           height: 20,

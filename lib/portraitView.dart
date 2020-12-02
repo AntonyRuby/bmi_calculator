@@ -45,6 +45,7 @@ class _PortraitViewState extends State<PortraitView> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: Column(children: [
+        Spacer(),
         Result(
             height: height,
             weight: weight,
@@ -55,18 +56,15 @@ class _PortraitViewState extends State<PortraitView> {
         GenderSelection(
           callback: redraw,
         ),
-        SizedBox(height: 20),
+        Spacer(),
         AgeSelection(
           callback: redraw,
         ),
-        SizedBox(
-          height: 20,
-        ),
+        Spacer(),
         HeightSelection(units: widget.units, callback: redraw),
-        SizedBox(
-          height: 20,
-        ),
+        Spacer(),
         WeightSelection(units: widget.units, callback: redraw),
+        Spacer()
       ]),
     );
   }

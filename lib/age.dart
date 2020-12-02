@@ -34,14 +34,14 @@ class _AgeSelectionState extends State<AgeSelection> {
           child: Slider(
             value: age.roundToDouble(),
             min: 2,
-            max: 70,
+            max: 80,
             onChanged: (value) {
               setState(() {
                 age = value.round();
                 widget.callback({"age": age});
               });
             },
-            divisions: 70,
+            divisions: 80,
             label: age.toString(),
             activeColor: Colors.red[400],
             inactiveColor: Colors.grey,

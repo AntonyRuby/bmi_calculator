@@ -49,6 +49,7 @@ class _LandscapeViewState extends State<LandscapeView> {
               flex: 1,
               child: Column(
                 children: [
+                  Spacer(),
                   Result(
                       height: height,
                       weight: weight,
@@ -56,9 +57,7 @@ class _LandscapeViewState extends State<LandscapeView> {
                       gender: gender == 1 ? "male" : "female",
                       bmiJson: json
                           .decode(widget.snapshot.data["bmiJson"].toString())),
-                  SizedBox(
-                    height: 25,
-                  ),
+                  Spacer(),
                   GenderSelection(
                     callback: redraw,
                   ),
@@ -67,20 +66,15 @@ class _LandscapeViewState extends State<LandscapeView> {
           Expanded(
               flex: 1,
               child: Column(children: [
-                SizedBox(
-                  height: 1,
-                ),
+                Spacer(),
                 AgeSelection(
                   callback: redraw,
                 ),
-                SizedBox(
-                  height: 1,
-                ),
+                Spacer(),
                 HeightSelection(units: widget.units, callback: redraw),
-                SizedBox(
-                  height: 1,
-                ),
+                Spacer(),
                 WeightSelection(units: widget.units, callback: redraw),
+                Spacer(),
               ])),
         ]));
   }
