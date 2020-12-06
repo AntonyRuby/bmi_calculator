@@ -21,7 +21,7 @@ class WeightSelection extends StatefulWidget {
 }
 
 class _WeightSelectionState extends State<WeightSelection> {
-  int weight = 12;
+  int weight = 125;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class _WeightSelectionState extends State<WeightSelection> {
           ),
           Text(
             (widget.units == "metric")
-                ? weight.round().toString() + " kgs"
-                : kgToLbs(weight).toString() + " lbs",
+                ? lbToKgs(weight).round().toString() + " kgs"
+                : weight.toString() + " lbs",
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
@@ -45,17 +45,17 @@ class _WeightSelectionState extends State<WeightSelection> {
         Padding(
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Slider(
-              value: weight.roundToDouble(),
+              value: lbToKgs(weight).roundToDouble(),
               min: 6,
               max: 150,
               onChanged: (value) {
                 setState(() {
-                  weight = value.round();
+                  weight = kgToLbs(value.round());
                   widget.callback({"weight": weight});
                 });
               },
               divisions: 144,
-              label: weight.toString(),
+              label: lbToKgs(weight).round().toString(),
               activeColor: Colors.red[400],
               inactiveColor: Colors.grey,
             )),
@@ -64,17 +64,17 @@ class _WeightSelectionState extends State<WeightSelection> {
             padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: Column(children: [
               Slider(
-                value: kgToLbs(weight).roundToDouble(),
+                value: weight.roundToDouble(),
                 min: 13,
                 max: 331,
                 onChanged: (val) {
                   setState(() {
-                    weight = lbToKgs(val.round());
+                    weight = val.round();
                     widget.callback({"weight": weight});
                   });
                 },
                 divisions: 318,
-                label: kgToLbs(weight).toString(),
+                label: weight.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,
               ),

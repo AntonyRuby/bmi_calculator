@@ -52,7 +52,8 @@ class _ResultState extends State<Result> {
       }
     }
 
-    bmi = widget.weight / ((widget.height / 100) * (widget.height / 100));
+    int weightInKg = (widget.weight / 2.20462).round();
+    bmi = weightInKg / ((widget.height / 100) * (widget.height / 100));
     List<dynamic> bmiRange =
         widget.bmiJson[widget.gender][(widget.age.round() * 12).toString()];
 
@@ -111,8 +112,8 @@ class _ResultState extends State<Result> {
         ),
         Text(
           (widget.age > 19)
-              ? "Healthy weight Range: 18.5 to 25"
-              : "Healthy weight Range: " +
+              ? "Healthy BMI Range: 18.5 to 25"
+              : "Healthy BMI Range: " +
                   bmiRange[2].toString() +
                   " to " +
                   bmiRange[4].toString(),
