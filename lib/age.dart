@@ -41,7 +41,7 @@ class _AgeSelectionState extends State<AgeSelection> {
                 widget.callback({"age": age});
               });
             },
-            divisions: 80,
+            divisions: 78,
             label: age.toString(),
             activeColor: Colors.red[400],
             inactiveColor: Colors.grey,

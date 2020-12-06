@@ -42,30 +42,27 @@ class _PortraitViewState extends State<PortraitView> {
   @override
   Widget build(BuildContext context) {
     redraw({});
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-      child: Column(children: [
-        Spacer(),
-        Result(
-            height: height,
-            weight: weight,
-            age: age,
-            gender: gender == 1 ? "male" : "female",
-            bmiJson: json.decode(widget.snapshot.data["bmiJson"].toString())),
-        Spacer(),
-        GenderSelection(
-          callback: redraw,
-        ),
-        Spacer(),
-        AgeSelection(
-          callback: redraw,
-        ),
-        Spacer(),
-        HeightSelection(units: widget.units, callback: redraw),
-        Spacer(),
-        WeightSelection(units: widget.units, callback: redraw),
-        Spacer()
-      ]),
-    );
+    return Column(children: [
+      Spacer(),
+      Result(
+          height: height,
+          weight: weight,
+          age: age,
+          gender: gender == 1 ? "male" : "female",
+          bmiJson: json.decode(widget.snapshot.data["bmiJson"].toString())),
+      Spacer(),
+      GenderSelection(
+        callback: redraw,
+      ),
+      Spacer(),
+      AgeSelection(
+        callback: redraw,
+      ),
+      Spacer(),
+      HeightSelection(units: widget.units, callback: redraw),
+      Spacer(),
+      WeightSelection(units: widget.units, callback: redraw),
+      Spacer()
+    ]);
   }
 }

@@ -54,7 +54,7 @@ class _WeightSelectionState extends State<WeightSelection> {
                   widget.callback({"weight": weight});
                 });
               },
-              divisions: 150,
+              divisions: 144,
               label: weight.toString(),
               activeColor: Colors.red[400],
               inactiveColor: Colors.grey,
@@ -73,7 +73,7 @@ class _WeightSelectionState extends State<WeightSelection> {
                     widget.callback({"weight": weight});
                   });
                 },
-                divisions: 331,
+                divisions: 318,
                 label: kgToLbs(weight).toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,

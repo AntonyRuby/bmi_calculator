@@ -2,11 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 int cmToFeet(int height) {
-  return (height / 2.54 / 12).floor();
+  return ((height / 2.54).round() / 12).floor();
 }
 
 int cmToInch(int height) {
-  return ((height / 2.54) - (height / 2.54 / 12).floor() * 12).round();
+  return ((height / 2.54).round() -
+      ((height / 2.54).round() / 12).floor() * 12);
 }
 
 int feetToCm(int feet, inch) {
@@ -65,7 +66,7 @@ class _HeightSelectionState extends State<HeightSelection> {
                   widget.callback({"height": height});
                 });
               },
-              divisions: 241,
+              divisions: 180,
               label: height.toString(),
               activeColor: Colors.red[400],
               inactiveColor: Colors.grey,
@@ -85,7 +86,7 @@ class _HeightSelectionState extends State<HeightSelection> {
                     widget.callback({"height": height});
                   });
                 },
-                divisions: 7,
+                divisions: 5,
                 label: heightFeet.toString(),
                 activeColor: Colors.red[400],
                 inactiveColor: Colors.grey,
